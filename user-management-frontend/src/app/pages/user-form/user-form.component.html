@@ -1,0 +1,37 @@
+<div class="max-w-md mx-auto bg-white shadow-md rounded-xl p-6 mt-10">
+  <h2 class="text-2xl font-semibold mb-4">{{ isEditMode ? 'Edit User' : 'Add User' }}</h2>
+  <form (ngSubmit)="submitForm()" class="space-y-4">
+    
+    <div>
+      <label class="block mb-1 font-medium">Username</label>
+      <input type="text" [(ngModel)]="user.username" name="username" required
+             class="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-300" />
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium">Full Name</label>
+      <input type="text" [(ngModel)]="user.fullName" name="fullName" required
+             class="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-300" />
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium">Password</label>
+      <input type="password" [(ngModel)]="user.password" name="password" required
+             class="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:border-blue-300" />
+    </div>
+
+    <div class="flex justify-between mt-4">
+      <button type="submit"
+              class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+
+      <button type="button"
+              class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
+              (click)="goBack()">
+        Cancel
+      </button>
+    </div>
+
+  </form>
+</div>

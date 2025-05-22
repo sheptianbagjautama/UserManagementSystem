@@ -31,7 +31,7 @@ namespace UserManagementSystem.API.Services
                 _config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
                 claims,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds
             );
 
