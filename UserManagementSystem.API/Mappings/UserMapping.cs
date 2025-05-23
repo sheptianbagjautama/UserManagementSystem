@@ -1,29 +1,33 @@
 ﻿using UserManagementSystem.API.Dtos;
 using UserManagementSystem.API.Models;
-using UserManagementSystem.API.Services;
 
-namespace UserManagementSystem.API.Mappings
+public static class UserMapping
 {
-    public static class UserMapping
+    public static ResponseUserDto ToDto(this User user)
     {
-        public static ResponseUserDto ToDto(this User user)
+        return new ResponseUserDto
         {
-            return new ResponseUserDto
-            {
-                Id = user.Id,
-                Username = user.Username,
-                FullName = user.FullName
-            };
-        }
+            Id = user.Id,
+            Username = user.Username,
+            FullName = user.FullName,
+            Gender = user.Gender,
+            BirthDate = user.BirthDate,
+            Address = user.Address,
+            Phone = user.Phone
+        };
+    }
 
-        public static User ToModel(this RequestUserDto dto, string hashedPassword)
+    public static User ToModel(this RequestUserDto dto, string hashedPassword)
+    {
+        return new User
         {
-            return new User
-            {
-                Username = dto.Username,
-                FullName = dto.FullName,
-                Password = hashedPassword
-            };
-        }
+            Username = dto.Username,
+            FullName = dto.FullName,
+            Password = hashedPassword,
+            Gender = dto.Gender,
+            BirthDate = dto.BirthDate,
+            Address = dto.Address,
+            Phone = dto.Phone
+        };
     }
 }

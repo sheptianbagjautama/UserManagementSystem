@@ -1,29 +1,59 @@
-<div class="p-4">
-  <h2 class="text-2xl font-bold mb-4">User List</h2>
-  <a routerLink="/users/add" class="bg-green-500 text-white px-4 py-2 rounded">Add User</a>
+<div class="w-full max-w-7xl mx-auto p-6 mt-12">
+    <div class="mb-4 flex items-center justify-between">
+        <div class="text-3xl font-semibold">
+            Hi
+            <span class="text-indigo-600">{{ user.username }}</span>!
+            <div class="text-gray-600 font-medium mb-4 text-2xl">
+                Welcome to the User Management System.
+            </div>
+        </div>
+        <button (click)="logout()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded shadow">
+            Logout
+        </button>
 
-  <table class="w-full mt-4 border-collapse">
-    <thead>
-      <tr class="bg-gray-200">
-        <th class="border p-2">ID</th>
-        <th class="border p-2">Username</th>
-        <th class="border p-2">Full Name</th>
-        <th class="border p-2">Role</th>
-        <th class="border p-2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td class="border p-2">{{ user.id }}</td>
-        <td class="border p-2">{{ user.username }}</td>
-        <td class="border p-2">{{ user.fullName }}</td>
-        <td class="border p-2">{{ user.role }}</td>
-        <td class="border p-2">
-          <a [routerLink]="['/users/edit', user.id]" class="text-blue-500">Edit</a>
-          |
-          <button (click)="deleteUser(user.id)" class="text-red-500">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </div>
+
+    <hr class="my-6 border-gray-300">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl text-gray-800">User List</h2>
+        <div class="flex items-center space-x-4">
+
+            <a routerLink="/users/add" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow">
+                Add User
+            </a>
+        </div>
+    </div>
+
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">Username</th>
+                    <th class="px-4 py-3">Full Name</th>
+                    <th class="px-4 py-3">Gender</th>
+                    <th class="px-4 py-3">Birth Date</th>
+                    <th class="px-4 py-3">Address</th>
+                    <th class="px-4 py-3">Phone</th>
+                    <th class="px-4 py-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr *ngFor="let user of users" class="hover:bg-gray-50">
+                    <td class="px-4 py-3">{{ user.id }}</td>
+                    <td class="px-4 py-3">{{ user.username }}</td>
+                    <td class="px-4 py-3">{{ user.fullName }}</td>
+                    <td class="px-4 py-3 capitalize">{{ user.gender }}</td>
+                    <td class="px-4 py-3">{{ user.birthDate | date: 'yyyy-MM-dd' }}</td>
+                    <td class="px-4 py-3">{{ user.address }}</td>
+                    <td class="px-4 py-3">{{ user.phone }}</td>
+                    <td class="px-4 py-3 flex space-x-3">
+                        <a [routerLink]="['/users/edit', user.id]"
+                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                        <button (click)="deleteUser(user.id!)" class="text-red-600 hover:text-red-900">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,0 +1,36 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100 gap-6">
+  <h2 class="text-3xl font-semibold text-gray-800">User Management System</h2>
+  <div class="bg-white p-8 rounded-xl shadow-md w-96">
+    <h2 class="text-2xl font-bold mb-4 text-center">Register</h2>
+    <form (ngSubmit)="register()">
+      <input type="text" [(ngModel)]="user.username" name="username" placeholder="Username"
+        class="w-full p-2 border rounded mb-4" required />
+      <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password"
+        class="w-full p-2 border rounded mb-4" required />
+      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+        class="w-full p-2 border rounded mb-4" required />
+      <p *ngIf="passwordMismatch" class="text-red-500 text-sm mb-4">Password and confirm password do not match.</p>
+      <input type="text" [(ngModel)]="user.fullName" name="fullName" placeholder="Full Name"
+        class="w-full p-2 border rounded mb-4" required />
+      <select [(ngModel)]="user.gender" name="gender" class="w-full p-2 border rounded mb-4" required>
+        <option value="" disabled selected>-- Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <input type="date" [(ngModel)]="user.birthDate" name="birthDate" class="w-full p-2 border rounded mb-4"
+        required />
+      <input type="text" [(ngModel)]="user.phone" name="phoneNumber" placeholder="Phone Number"
+        class="w-full p-2 border rounded mb-4" required />
+
+      <textarea [(ngModel)]="user.address" name="address" placeholder="Address"
+        class="w-full p-2 border rounded mb-4 resize-none" required></textarea>
+
+
+      <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">Register</button>
+    </form>
+    <p class="text-center mt-4 text-sm text-gray-600">
+      Already have an account?
+      <a routerLink="/login" class="text-blue-500 hover:underline">Login here</a>
+    </p>
+  </div>
+</div>

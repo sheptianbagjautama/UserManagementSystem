@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using UserManagementSystem.API.Dtos;
 using UserManagementSystem.API.Interfaces;
-using UserManagementSystem.API.Mappings;
 using UserManagementSystem.API.Services;
 
 namespace UserManagementSystem.API.Controllers
@@ -73,12 +72,13 @@ namespace UserManagementSystem.API.Controllers
                     return BadRequest(ModelState);
                 }
 
-                if (string.IsNullOrWhiteSpace(userDto.Password) || userDto.Password.Length < 6)
+                if (userDto.Password.Length > 0 && userDto.Password.Length < 6)
                 {
                     return BadRequest(new { message = "Password must be at least 6 characters." });
                 }
 
-                var hashedPassword = _jwtService.HashPassword(userDto.Password);
+                var hashedPassword = userDto.Password != "" ? _jwtService.HashPassword(userDto.Password) : userDto.Password;
+
                 var updatedUserModel = userDto.ToModel(hashedPassword);
 
                 var updatedUser = await _userRepository.UpdateAsync(id, updatedUserModel);

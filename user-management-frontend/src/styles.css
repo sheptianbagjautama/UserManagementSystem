@@ -6,12 +6,23 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .snack-success {
-  background-color: #4caf50 !important; /* hijau */
+  background-color: #4caf50 !important; 
   color: white !important;
 }
 
 .snack-error {
-  background-color: #f44336 !important; /* merah */
+  background-color: #f44336 !important; 
   color: white !important;
+}
+
+/* Gaya tombol close dalam snackbar */
+.snackbar-success .mat-button-wrapper,
+.snackbar-error .mat-button-wrapper {
+  color: black;
+}
+
+.snackbar-success .mat-button:hover .mat-button-wrapper,
+.snackbar-error .mat-button:hover .mat-button-wrapper {
+  color: #ffd700; /* kuning keemasan saat hover */
 }
 

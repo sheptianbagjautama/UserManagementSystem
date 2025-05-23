@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../services/notification.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
-  imports: [FormsModule], 
+  imports: [FormsModule, RouterModule, CommonModule], 
 })
 export class LoginComponent {
   username = '';
@@ -20,6 +21,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: res => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('username', this.username);
         this.router.navigate(['/users']);
         this.notificationService.success('Login successful!');
       },

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environtments/environtment';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +12,23 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getAll() {
-    return this.http.get<any[]>(this.apiUrl);
+  getAll(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl);
   }
 
-  getById(id: number) {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  getById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
-  create(data: any) {
-    return this.http.post(this.apiUrl, data);
+  create(user: User): Observable<User> {
+    return this.http.post<User>(this.apiUrl, user);
   }
 
-  update(id: number, data: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+  update(id: number, user: Partial<User>): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/${id}`, user);
   }
 
-  delete(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

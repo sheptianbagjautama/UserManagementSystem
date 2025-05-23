@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using UserManagementSystem.API.Dtos;
 using UserManagementSystem.API.Interfaces;
-using UserManagementSystem.API.Mappings;
 using UserManagementSystem.API.Models;
 using UserManagementSystem.API.Repositories;
 using UserManagementSystem.API.Services;

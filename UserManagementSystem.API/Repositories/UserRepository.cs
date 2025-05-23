@@ -79,7 +79,13 @@ namespace UserManagementSystem.API.Repositories
 
                 existing.Username = user.Username;
                 existing.FullName = user.FullName;
-                existing.Password = user.Password;
+                if (!string.IsNullOrWhiteSpace(user.Password))
+                    existing.Password = user.Password;
+
+                existing.Gender = user.Gender;
+                existing.BirthDate = user.BirthDate;
+                existing.Address = user.Address;
+                existing.Phone = user.Phone;
 
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
